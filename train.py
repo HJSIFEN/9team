@@ -20,13 +20,12 @@ def train(model,
     if dir_name == None:
         dir_name = get_run_logdir()
         os.mkdir(dir_name)
-    scheduler = keras.callbacks.ReduceLROnPlateau(factor = 0.5, patience = 5)
 
     model.compile(loss="categorical_crossentropy", optimizer = optimizer, metrics=['accuracy'])
     train_generator, validation_generator = DataGenerator(batch_size=batch_size)
 
     history = model.fit(train_generator, epochs=epochs, steps_per_epoch=46, 
-                    validation_data = validation_generator, validation_steps=12, callbacks=callbacks(dir_name, model_name, patience) + [scheduler])
+                    validation_data = validation_generator, validation_steps=12, callbacks=callbacks(dir_name, model_name, patience))
 
     return history
 

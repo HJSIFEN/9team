@@ -10,7 +10,8 @@ def callbacks(dir_name = None, model_name='model.h5', patience = 10):
     checkpoint_cb = keras.callbacks.ModelCheckpoint(os.path.join(dir_name, model_name), save_best_only = True)
     early_stopping_cb = keras.callbacks.EarlyStopping(patience = patience, restore_best_weights = True)
     tensorboard_cb = keras.callbacks.TensorBoard(os.path.join(dir_name, "tensorboard"), histogram_freq=1)
+    scheduler = keras.callbacks.ReduceLROnPlateau(factor = 0.5, patience = 5)
 
-    return [checkpoint_cb, early_stopping_cb, tensorboard_cb]
+    return [checkpoint_cb, early_stopping_cb, tensorboard_cb, scheduler]
 
  
