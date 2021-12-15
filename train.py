@@ -14,13 +14,13 @@ def train(model,
     optimizer = keras.optimizers.Adam(), 
     dir_name = None,
     model_name = "model.h5",
-    batch_size=32,
+    batch_size=16,
     patience = 10):
 
     if dir_name == None:
         dir_name = get_run_logdir()
         os.mkdir(dir_name)
-
+    
     model.compile(loss="categorical_crossentropy", optimizer = optimizer, metrics=['accuracy'])
     train_generator, validation_generator = DataGenerator(batch_size=batch_size)
 
