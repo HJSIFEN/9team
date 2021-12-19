@@ -24,8 +24,8 @@ def train(model,
     model.compile(loss="categorical_crossentropy", optimizer = optimizer, metrics=['accuracy'])
     train_generator, validation_generator = DataGenerator(batch_size=batch_size)
 
-    history = model.fit(train_generator, epochs=epochs, steps_per_epoch=46, 
-                    validation_data = validation_generator, validation_steps=12, callbacks=callbacks(dir_name, model_name, patience))
+    history = model.fit(train_generator, epochs=epochs, steps_per_epoch=56, 
+                    validation_data = validation_generator, validation_steps=12, callbacks=callbacks_list(dir_name, model_name, patience))
 
     return history
 
